@@ -1,19 +1,17 @@
-local cmp = require("cmp")
+local cmp = require "cmp"
 
 local plugins = {
   {
     "jay-babu/mason-null-ls.nvim",
-    event = {"BufReadPre", "BufNewFile"},
+    event = { "BufReadPre", "BufNewFile" },
     dependencies = {
-    "williamboman/mason.nvim",
+      "williamboman/mason.nvim",
       "jose-elias-alvarez/null-ls.nvim",
     },
-      config = function ()
-        require "custom.configs.null-ls"
-        require("mason-null-ls").setup({
-          automatic_installation = true
-      })
-      end,
+    config = function()
+      require "custom.configs.null-ls"
+      require("mason-null-ls").setup { automatic_installation = true }
+    end,
   },
   {
     "neovim/nvim-lspconfig",
@@ -25,15 +23,15 @@ local plugins = {
   {
     "mfussenegger/nvim-dap",
     init = function()
-      require("core.utils").load_mappings("dap")
-    end
+      require("core.utils").load_mappings "dap"
+    end,
   },
   {
     "theHamsta/nvim-dap-virtual-text",
     lazy = false,
     config = function()
       require("nvim-dap-virtual-text").setup()
-    end
+    end,
   },
   {
     "hrsh7th/nvim-cmp",
@@ -47,5 +45,10 @@ local plugins = {
       return M
     end,
   },
+  {
+    "nvim-telescope/telescope-fzf-native.nvim",
+    build = "make",
+  },
+  "ANGkeith/telescope-terraform-doc.nvim",
 }
 return plugins
